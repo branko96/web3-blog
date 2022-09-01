@@ -29,7 +29,7 @@ export const ProfileImage = ({
         })}
       >
         <Image
-          src="https://res.cloudinary.com/delba/image/twitter_name/c_thumb,g_face,h_380,w_380,q_100/delba_oliveira.jpg"
+          src="/BrankoOttavianelli.jpg"
           alt="A photo of Delba"
           quality={95}
           priority={true}

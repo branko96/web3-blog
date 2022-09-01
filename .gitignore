@@ -40,3 +40,6 @@ yarn-error.log*
 
 # contentlayer
 .contentlayer
+
+# Idea
+.idea
