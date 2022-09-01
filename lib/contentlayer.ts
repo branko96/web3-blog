@@ -1,10 +1,10 @@
 import { pick } from "contentlayer/client"
-import { Post, Video } from "contentlayer/generated"
+import { Post } from "contentlayer/generated"
 
 export const allTagNames = ["Next.js", "MDX", "Next Conf", "React Conf"]
 export const allTagSlugs = ["next", "mdx", "next-conf", "react-conf"]
 
-export const formatVideoPreview = (video: Video) => {
+export const formatVideoPreview = (video: any) => {
   const partialVideo = pick(video, ["title", "description", "youtube", "tags"])
 
   return {
