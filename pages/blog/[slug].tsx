@@ -1,17 +1,13 @@
-import { FOCUS_VISIBLE_OUTLINE, LINK_STYLES } from "@/lib/constants"
 import { getPartialPost } from "@/lib/contentlayer"
 import { createOgImage } from "@/lib/createOgImage"
-import { FormattedTweet, getTweets } from "@/lib/twitter"
-import { Aside } from "@/ui/Aside"
 import { Layout } from "@/ui/Layout"
 import { LikeButton2 } from "@/ui/LikeButton2"
 import { components } from "@/ui/MdxComponents"
-import { PostMetrics } from "@/ui/PostMetrics"
 import { PostSeries } from "@/ui/PostSeries"
 import { Tweet } from "@/ui/Tweet"
 import clsx from "clsx"
 import { allPosts } from "contentlayer/generated"
-import { GetStaticProps, InferGetStaticPropsType } from "next"
+import { InferGetStaticPropsType } from "next"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { NextSeo } from "next-seo"
 
@@ -22,10 +18,7 @@ export const getStaticPaths = () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<{
-  post: ReturnType<typeof getPartialPost>
-  tweets: FormattedTweet[]
-}> = async ({ params }) => {
+export const getStaticProps: ({ params }: { params: any }) => Promise<{ notFound: boolean } | { props: { post: { publishedAtFormatted: string; series: { title: string; posts: { isCurrent: boolean; title: string; slug: string; status: "draft" | "published" }[] } | null; description: string | null; headings: { heading: number; text: string; slug: string }[]; title: string; body: { code: any }; slug: string } } }> = async ({ params }) => {
   const post = allPosts.find((post) => post.slug === params?.slug)
 
   if (!post) {
@@ -37,7 +30,6 @@ export const getStaticProps: GetStaticProps<{
   return {
     props: {
       post: getPartialPost(post, allPosts),
-      tweets: await getTweets(post.tweetIds),
     },
   }
 }
@@ -62,11 +54,11 @@ export default function PostPage({
     return <Tweet showAttachments={showAttachments} {...tweet} />
   }
 
-  const url = `https://delba.dev/blog/${post.slug}`
-  const title = `${post.title} | delba.dev`
+  const url = `https://branko.ott/blog/${post.slug}`
+  const title = `${post.title} | branko.ott`
   const ogImage = createOgImage({
     title: post.title,
-    meta: "delba.dev · " + post.publishedAtFormatted,
+    meta: "branko.ott · " + post.publishedAtFormatted,
   })
 
   return (
@@ -99,7 +91,6 @@ export default function PostPage({
           <div className="mt-2 flex space-x-2 text-lg text-rose-100/50">
             <div>{post.publishedAtFormatted}</div>
             <div className="text-rose-100/30">&middot;</div>
-            <PostMetrics slug={post.slug} />
           </div>
         </div>
 

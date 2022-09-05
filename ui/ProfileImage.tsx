@@ -11,7 +11,7 @@ export const ProfileImage = ({
   return (
     <div
       className={cx(
-        "rounded-full bg-gradient-to-tl from-purple-700/60 to-rose-400/60 shadow-lg",
+        "rounded-full bg-gradient-to-tl from-purple-700/60 to-indigo-400/60 shadow-lg",
         {
           "p-[2px]": size === "small",
           "p-[3px]": size === "large",

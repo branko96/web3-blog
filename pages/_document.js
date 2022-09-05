@@ -9,7 +9,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" type="image/png" href="/assets/favicon.png?v=1" />
+        <link rel="icon" type="image/png" href="/assets/favicon.ico?v=1" />
         <meta name="theme-color" content="#1c1917" />
         <link
           rel="preload"

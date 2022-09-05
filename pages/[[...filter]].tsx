@@ -44,7 +44,6 @@ export const getStaticPaths = () => {
 export const getStaticProps: GetStaticProps<{
   currentFilters: CurrentFilters
   posts: (
-    | ReturnType<typeof formatVideoPreview>
     | ReturnType<typeof formatPostPreview>
   )[]
 }> = async ({ params }) => {
@@ -185,7 +184,6 @@ export default function Home({
 
             {posts.map((post) => {
               if (post.type === "Post") {
-                // @ts-ignore
                 return <BlogPostPreview key={post.slug} {...post} />
               }
             })}
