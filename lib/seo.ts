@@ -5,7 +5,7 @@ const title = `Branko Ottavianelli`
 const description = `Welcome to my blog where I will share my thoughts and insights about the blockchain world, and new technologies in general. I'm a software developer with a passion for crypto, blockchain and related technologies.`
 const domain = `branko.ott`
 const twitter = `@branko96`
-const meta = `Developer Experience at ▲ Vercel and Next.js`
+const meta = `Web 3 Blog Blockchain`
 
 export const seo: DefaultSeoProps = {
   title: title + " | " + meta,
