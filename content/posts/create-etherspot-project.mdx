@@ -1,0 +1,197 @@
+---
+title: "How to create an Etherspot project"
+publishedAt: "2022-09-12"
+status: "published"
+series:
+  title: "Etherspot project"
+---
+
+Etherspot is a blockchain development framework for EVM-compatible chains that creates direct state channel bridges to provide a seamless user experience across chains and wallets.
+Requirements:
+
+- **Node.js**
+
+# Create a new node project
+
+Lets create an empty node project
+
+```bash title="Terminal"
+mkdir etherspot
+cd etherspot
+npm init -y
+```
+
+# Install etherspot
+
+```bash title="Terminal"
+npm install ethers@^5.5.2 reflect-metadata@^0.1.13 rxjs@^6.6.2 -S
+npm install --save etherspot
+npm install ws -s
+```
+
+# The js code for index.js
+
+Here we import etherspot and below instanciate the sdk class and call signMessage method to sign the message.
+
+```js showLineNumbers title="src/index.js" {9}
+import { Sdk, randomPrivateKey } from 'etherspot';
+
+const PRIVATE_KEY = randomPrivateKey();
+
+async function main() {
+  const sdk = new Sdk(PRIVATE_KEY);
+
+  const signature = await sdk.signMessage({
+    message: "message to sign",
+  });
+
+  console.log('signature', signature);
+}
+
+main().catch(console.error);
+```
+
+Output
+
+```bash title="Terminal"
+"0x2be06de5d41e1de4682341d915b9a337cf5ba2f63a55f6674ca85deeb08d67f772b79888324fc61c5d9bfd05fafe7276a0cb4a610252ab4559db624921802cc11b"
+```
+
+# Get token lists
+
+```js showLineNumbers title="src/index.js" {8}
+import { Sdk, randomPrivateKey } from 'etherspot';
+
+const PRIVATE_KEY = randomPrivateKey();
+
+async function main() {
+  const sdk = new Sdk(PRIVATE_KEY);
+
+  const output = await sdk.getTokenLists();
+
+  console.log('token lists', output);
+}
+
+main().catch(console.error);
+```
+
+Output
+
+```bash title="Terminal"
+[
+  {
+    "name": "AaveTokens",
+    "endpoint": "https://tokenlist.aave.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:34:53"
+  },
+  {
+    "name": "CmcDefiTokens",
+    "endpoint": "https://defi.cmc.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:34:58"
+  },
+  {
+    "name": "CmcErc20Tokens",
+    "endpoint": "https://erc20.cmc.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:09"
+  },
+  {
+    "name": "CmcStableCoins",
+    "endpoint": "https://stablecoin.cmc.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:03"
+  },
+  {
+    "name": "CoinGeckoTokens",
+    "endpoint": "https://tokens.coingecko.com/uniswap/all.json",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "CompoundTokens",
+    "endpoint": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "DefiPrimeTokens",
+    "endpoint": "https://defiprime.com/defiprime.tokenlist.json",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "DharmaTokens",
+    "endpoint": "https://tokenlist.dharma.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:17"
+  },
+  {
+    "name": "KlerosTokens",
+    "endpoint": "https://t2crtokens.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:28"
+  },
+  {
+    "name": "OneInchTokens",
+    "endpoint": "https://etherspot-dashboard.pillarproject.io/token-lists/1inch/1",
+    "isDefault": true,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "PillarTokens",
+    "endpoint": "https://etherspot-dashboard.pillarproject.io/token-lists/pillar/1",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-06-15 14:53:46",
+    "updatedAt": "[Date] 2022-07-28 08:20:14"
+  },
+  {
+    "name": "RollSocialTokens",
+    "endpoint": "https://app.tryroll.com/tokens.json",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "SynthetixTokens",
+    "endpoint": "https://synths.snx.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:37"
+  },
+  {
+    "name": "UmaTokens",
+    "endpoint": "https://umaproject.org/uma.tokenlist.json",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "UniswapTokens",
+    "endpoint": "https://gateway.ipfs.io/ipns/tokens.uniswap.org",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2021-03-19 10:55:24"
+  },
+  {
+    "name": "ZerionTokens",
+    "endpoint": "https://tokenlist.zerion.eth.limo",
+    "isDefault": false,
+    "createdAt": "[Date] 2021-03-19 10:55:24",
+    "updatedAt": "[Date] 2022-08-29 08:35:50"
+  }
+]
+```
+
+

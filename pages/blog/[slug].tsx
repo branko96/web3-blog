@@ -4,12 +4,12 @@ import { Layout } from "@/ui/Layout"
 import { LikeButton2 } from "@/ui/LikeButton2"
 import { components } from "@/ui/MdxComponents"
 import { PostSeries } from "@/ui/PostSeries"
-import { Tweet } from "@/ui/Tweet"
 import clsx from "clsx"
-import { allPosts } from "contentlayer/generated"
-import { InferGetStaticPropsType } from "next"
+import { allPosts, Post } from "contentlayer/generated"
+import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { NextSeo } from "next-seo"
+import { FormattedTweet } from "@/lib/twitter"
 
 export const getStaticPaths = () => {
   return {
@@ -18,7 +18,9 @@ export const getStaticPaths = () => {
   }
 }
 
-export const getStaticProps: ({ params }: { params: any }) => Promise<{ notFound: boolean } | { props: { post: { publishedAtFormatted: string; series: { title: string; posts: { isCurrent: boolean; title: string; slug: string; status: "draft" | "published" }[] } | null; description: string | null; headings: { heading: number; text: string; slug: string }[]; title: string; body: { code: any }; slug: string } } }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{
+  post: ReturnType<typeof getPartialPost>
+}> = async ({ params }) => {
   const post = allPosts.find((post) => post.slug === params?.slug)
 
   if (!post) {
@@ -36,23 +38,8 @@ export const getStaticProps: ({ params }: { params: any }) => Promise<{ notFound
 
 export default function PostPage({
   post,
-  tweets,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const MDXContent = useMDXComponent(post.body.code)
-
-  const StaticTweet = ({
-    id,
-    showAttachments,
-  }: {
-    id: string
-    showAttachments?: boolean
-  }) => {
-    const tweet = tweets.find((tweet) => tweet.id === id)
-    if (!tweet) {
-      return null
-    }
-    return <Tweet showAttachments={showAttachments} {...tweet} />
-  }
 
   const url = `https://branko.ott/blog/${post.slug}`
   const title = `${post.title} | branko.ott`
@@ -131,7 +118,6 @@ export default function PostPage({
         <MDXContent
           components={{
             ...components,
-            StaticTweet,
           }}
         />
 
