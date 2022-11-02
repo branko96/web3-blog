@@ -43,19 +43,7 @@ export const Footer = () => {
 
           <div className="space-x-5 pt-2 lg:pt-0">
             <a
-              href="https://twitter.com/delba_oliveira"
-              className={cx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
-            >
-              Twitter
-            </a>
-            <a
-              href="https://www.youtube.com/delba"
-              className={cx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
-            >
-              YouTube
-            </a>
-            <a
-              href="https://github.com/delbaoliveira"
+              href="https://github.com/branko96"
               className={cx(LINK_SUBTLE_STYLES, FOCUS_VISIBLE_OUTLINE)}
             >
               GitHub

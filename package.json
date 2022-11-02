@@ -18,7 +18,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.1",
-    "@prisma/client": "^3.9.1",
+    "@prisma/client": "^4.6.0-dev.30",
     "@radix-ui/react-hover-card": "^0.1.1",
     "clsx": "^1.1.1",
     "contentlayer": "0.2.4",
@@ -51,7 +51,7 @@
     "postcss": "^8.4.4",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",
-    "prisma": "^3.9.1",
+    "prisma": "^4.6.0-dev.30",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",

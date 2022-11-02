@@ -1,1 +1,1 @@
-[delba.dev](https://delba.dev)
+Built with Nextjs, Prisma, TailwindCSS, MDX.
